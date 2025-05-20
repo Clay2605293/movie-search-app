@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import MovieCard from './MovieCard'
 
 function App() {
   const [query, setQuery] = useState('')
@@ -31,7 +32,7 @@ function App() {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault() // evita recarga
+    e.preventDefault()
     handleSearch()
   }
 
@@ -56,11 +57,12 @@ function App() {
 
         <div className="results">
           {movies.map((movie) => (
-            <div key={movie.imdbID} className="movie-card">
-              <img src={movie.Poster !== 'N/A' ? movie.Poster : '/no-image.jpg'} alt={movie.Title} />
-              <h3>{movie.Title}</h3>
-              <p>{movie.Year}</p>
-            </div>
+            <MovieCard
+              key={movie.imdbID}
+              title={movie.Title}
+              year={movie.Year}
+              poster={movie.Poster}
+            />
           ))}
         </div>
       </main>
